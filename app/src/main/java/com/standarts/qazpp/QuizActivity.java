@@ -4,18 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class QuizActivity extends AppCompatActivity {
     ArrayList<Question> questions;
     int currentPosition = 0;
     int score = 0;
@@ -23,21 +27,30 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_quiz);
 
-        questions = new ArrayList<>();
-
-        questions.add(new Question("Who is Commander Shepard?", new String[]{"Alliance soldier", "Turian officer", "Salarian STG commando"}));
-        questions.add(new Question("5 + 4 =", new String[]{"9","10","8","17","12","7"}));
+        /*questions = new ArrayList<>();
+        questions.add(new Question("What is female Shepard's default name?", new String[]{"Jane", "Sarah", "Lucy", "Lara", "Lindsey"}));
+        questions.add(new Question("Who created the Genophage?", new String[]{"Salarians", "Turians", "Krogans", "Rachni", "Drell"}));
+        questions.add(new Question("Who created the Geth?", new String[]{"Quarians", "Turians", "Asari", "Humans", "Reapers"}));
+        questions.add(new Question("What is Samara's daughter Morinth?", new String[]{"Ardat Yakshi", "Spectre", "Justicar"}));
+        questions.add(new Question("What was the name of the Prothean V.I on Ilos?", new String[]{"Vigil", "Glyph","EDI"}));
+        questions.add(new Question("Male Shepard and Garrus have the same voice actor.", new String[]{"Yes", "No"}));*/
         //LoadQuestion(questions.get(currentPosition));
         Gson gson = new Gson();
         //Toast.makeText(this, "No more questions. Carry on", Toast.LENGTH_LONG).show();
-        /*if(!FileHelper.WriteToFile("test", gson.toJson(questions))){
+        /*if(!FileHelper.WriteToFile("masseffect", gson.toJson(questions, new TypeToken<ArrayList<Question>>() {}.getType()))){
             Toast.makeText(this, "Error occurred", Toast.LENGTH_LONG).show();
         }*/
-        Toast.makeText(this, FileHelper.ReadFromFile("test"), Toast.LENGTH_LONG).show();
 
-        //ArrayList<Question> questionsFromFile = gson.fromJson(FileHelper.ReadFromFile("test"), ArrayList.class);
+        String json = FileHelper.ReadFromFile("masseffect");
+        Toast.makeText(this, json, Toast.LENGTH_LONG).show();
+        Log.d("JSON", json);
+
+        ArrayList<Question> questionsFromFile = gson.fromJson(FileHelper.ReadFromFile("test"), new TypeToken<ArrayList<Question>>() {}.getType());
+        /*for (Question q: questionsFromFile) {
+            Toast.makeText(this, q.Text(), Toast.LENGTH_SHORT).show();
+        }*/
         //LoadQuestion(questionsFromFile.get(0));
     }
 
