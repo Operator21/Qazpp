@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Qazpp</string>
+    <string name="final_score">Final Score</string>
+    <string name="nan">NaN</string>
+    <string name="outof" translatable="false">out of</string>
+    <string name="restart">Restart</string>
+</resources>
