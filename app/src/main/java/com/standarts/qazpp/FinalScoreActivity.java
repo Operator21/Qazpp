@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,5 +22,11 @@ public class FinalScoreActivity extends AppCompatActivity {
         }
 
         ((TextView)findViewById(R.id.finalscoreText)).setText(String.format("%d %s %d", data.getIntExtra("score", 0), getResources().getString(R.string.outof), data.getIntExtra("maxscore", 0)));
+    }
+
+    public void restartClick(View view) {
+        Intent i = new Intent(this, QuizActivity.class);
+        finishAffinity();
+        startActivity(i);
     }
 }

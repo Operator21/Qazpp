@@ -17,10 +17,11 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class QuizActivity extends AppCompatActivity {
-    ArrayList<Question> questions;
+    ArrayList<Question> questions = new ArrayList<>();
     int currentPosition = 0;
     int score = 0;
     Question currentQuestion;
@@ -37,21 +38,16 @@ public class QuizActivity extends AppCompatActivity {
         questions.add(new Question("What was the name of the Prothean V.I on Ilos?", new String[]{"Vigil", "Glyph","EDI"}));
         questions.add(new Question("Male Shepard and Garrus have the same voice actor.", new String[]{"Yes", "No"}));*/
         //LoadQuestion(questions.get(currentPosition));
-        Gson gson = new Gson();
-        //Toast.makeText(this, "No more questions. Carry on", Toast.LENGTH_LONG).show();
-        /*if(!FileHelper.WriteToFile("masseffect", gson.toJson(questions, new TypeToken<ArrayList<Question>>() {}.getType()))){
-            Toast.makeText(this, "Error occurred", Toast.LENGTH_LONG).show();
-        }*/
 
+        Gson gson = new Gson();
         String json = FileHelper.ReadFromFile("masseffect");
-        Toast.makeText(this, json, Toast.LENGTH_LONG).show();
         Log.d("JSON", json);
 
-        ArrayList<Question> questionsFromFile = gson.fromJson(FileHelper.ReadFromFile("test"), new TypeToken<ArrayList<Question>>() {}.getType());
-        /*for (Question q: questionsFromFile) {
-            Toast.makeText(this, q.Text(), Toast.LENGTH_SHORT).show();
-        }*/
-        //LoadQuestion(questionsFromFile.get(0));
+        for (Question question : (ArrayList<Question>)gson.fromJson(FileHelper.ReadFromFile("masseffect"), new TypeToken<ArrayList<Question>>() {}.getType())) {
+            questions.add(question);
+        }
+        Collections.shuffle(questions);
+        LoadQuestion(questions.get(0));
     }
 
     void LoadQuestion(Question question){
