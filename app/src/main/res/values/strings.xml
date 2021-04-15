@@ -5,4 +5,10 @@
     <string name="outof" translatable="false">out of</string>
     <string name="restart">Restart</string>
     <string name="play">Play</string>
+    <string name="create_quiz">Create quiz</string>
+    <string name="exit">Exit</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="give_up">Give up</string>
+    <string name="quiz_selection">Quiz selection</string>
+    <string name="reset_files">Reset files</string>
 </resources>

@@ -26,7 +26,7 @@ public class FinalScoreActivity extends AppCompatActivity {
 
     public void restartClick(View view) {
         Intent i = new Intent(this, QuizActivity.class);
-        finishAffinity();
+        //finishAffinity();
         startActivity(i);
     }
 }

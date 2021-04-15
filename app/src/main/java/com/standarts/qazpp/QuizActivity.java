@@ -29,21 +29,24 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        //Quiz quiz = new Quiz("Life is Strange");
 
-        /*questions = new ArrayList<>();
-        questions.add(new Question("What is female Shepard's default name?", new String[]{"Jane", "Sarah", "Lucy", "Lara", "Lindsey"}));
-        questions.add(new Question("Who created the Genophage?", new String[]{"Salarians", "Turians", "Krogans", "Rachni", "Drell"}));
-        questions.add(new Question("Who created the Geth?", new String[]{"Quarians", "Turians", "Asari", "Humans", "Reapers"}));
-        questions.add(new Question("What is Samara's daughter Morinth?", new String[]{"Ardat Yakshi", "Spectre", "Justicar"}));
-        questions.add(new Question("What was the name of the Prothean V.I on Ilos?", new String[]{"Vigil", "Glyph","EDI"}));
-        questions.add(new Question("Male Shepard and Garrus have the same voice actor.", new String[]{"Yes", "No"}));*/
         //LoadQuestion(questions.get(currentPosition));
 
         Gson gson = new Gson();
-        String json = FileHelper.ReadFromFile("masseffect");
+        //FileHelper.WriteToFile("sg", gson.toJson(questions));
+
+        //masseffect | lis | sg
+        String json = FileHelper.ReadFromFile("sg");
         Log.d("JSON", json);
 
-        for (Question question : (ArrayList<Question>)gson.fromJson(FileHelper.ReadFromFile("masseffect"), new TypeToken<ArrayList<Question>>() {}.getType())) {
+        if(json.isEmpty()){
+            Toast.makeText(this, "File does not exist", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(this, MenuActivity.class);
+            startActivity(i);
+            return;
+        }
+        for (Question question : (ArrayList<Question>)gson.fromJson(json, new TypeToken<ArrayList<Question>>() {}.getType())) {
             questions.add(question);
         }
         Collections.shuffle(questions);
@@ -53,6 +56,7 @@ public class QuizActivity extends AppCompatActivity {
     void LoadQuestion(Question question){
         currentQuestion = question;
         ((TextView)findViewById(R.id.questionText)).setText(question.Text());
+        ((TextView)findViewById(R.id.pageText)).setText((currentPosition+1) + "/" + questions.size());
 
         AnswerListAdapter adapter = new AnswerListAdapter(this, question.Answers());
         ((ListView)findViewById(R.id.answerList)).setAdapter(adapter);
@@ -79,5 +83,10 @@ public class QuizActivity extends AppCompatActivity {
 
             startActivity(i);
         }
+    }
+
+    public void menuClick(View view) {
+        Intent i = new Intent(this, MenuActivity.class);
+        startActivity(i);
     }
 }
