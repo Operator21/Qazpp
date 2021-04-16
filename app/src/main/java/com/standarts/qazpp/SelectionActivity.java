@@ -2,11 +2,14 @@ package com.standarts.qazpp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -34,6 +37,15 @@ public class SelectionActivity extends AppCompatActivity {
             return;
         }
         ListView listView = findViewById(R.id.fileList);
+        Context context = this;
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(context, QuizActivity.class);
+                i.putExtra("quiz", new Gson().toJson(parent.getAdapter().getItem(position)));
+                startActivity(i);
+            }
+        });
         listView.setAdapter(new FileListAdapter(this, quizList));
     }
 

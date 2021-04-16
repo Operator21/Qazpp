@@ -3,6 +3,7 @@ package com.standarts.qazpp;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Quiz {
     private String name;
@@ -24,9 +25,17 @@ public class Quiz {
     public void Add(Question question){
         questions.add(question);
     }
+    public Question GetQuestion(int position){
+        if(position < questions.size())
+            return questions.get(position);
+        return null;
+    }
 
     public String Name(){
         return name;
+    }
+    public int Size(){
+        return questions.size();
     }
 
     public ArrayList<Question> Question(){
@@ -35,5 +44,8 @@ public class Quiz {
 
     public String ToJson(){
         return new Gson().toJson(this);
+    }
+    public void ShuffleQuestions(){
+        Collections.shuffle(questions);
     }
 }

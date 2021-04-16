@@ -41,6 +41,7 @@
     <Button
         android:id="@+id/menuButton"
         style="@style/menubutton"
+        android:onClick="menuClick"
         android:layout_marginBottom="100dp"
         android:text="@string/main_menu"
         app:layout_constraintBottom_toBottomOf="parent"
