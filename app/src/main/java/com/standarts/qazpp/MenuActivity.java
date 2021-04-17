@@ -32,8 +32,8 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void createClick(View view) {
-        Intent i = new Intent(this, QuizActivity.class);
-        startActivityForResult(i);
+        Intent i = new Intent(this, CreateQuizActivity.class);
+        startActivity(i);
     }
 
     private void startActivityForResult(Intent i) {

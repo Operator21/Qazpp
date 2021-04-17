@@ -15,9 +15,9 @@ public class Question {
     public Question(String text, String[] answers){
         this.text = text;
         if(answers.length > 1){
-            correctAnswer = answers[0];
+            correctAnswer = answers[0].trim();
             for (String answer : answers) {
-                this.answers.add(answer);
+                this.answers.add(answer.trim());
             }
         }
     }

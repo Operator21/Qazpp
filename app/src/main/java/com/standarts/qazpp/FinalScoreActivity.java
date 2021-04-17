@@ -29,12 +29,14 @@ public class FinalScoreActivity extends AppCompatActivity {
     public void restartClick(View view) {
         Intent i = new Intent(this, QuizActivity.class);
         i.putExtra("quiz", json);
+        i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
         //finishAffinity();
         startActivity(i);
     }
 
     public void menuClick(View view) {
         Intent i = new Intent(this, MenuActivity.class);
+        i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(i);
     }
 }

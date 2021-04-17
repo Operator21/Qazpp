@@ -38,7 +38,7 @@ public class Quiz {
         return questions.size();
     }
 
-    public ArrayList<Question> Question(){
+    public ArrayList<Question> Questions(){
         return questions;
     }
 

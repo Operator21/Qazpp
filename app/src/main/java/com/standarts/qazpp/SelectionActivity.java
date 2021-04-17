@@ -42,6 +42,7 @@ public class SelectionActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(context, QuizActivity.class);
+                i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
                 i.putExtra("quiz", new Gson().toJson(parent.getAdapter().getItem(position)));
                 startActivity(i);
             }
@@ -51,6 +52,8 @@ public class SelectionActivity extends AppCompatActivity {
 
     public void resetClick(View view) {
         DefaultFilesCreator.CreateDefaultFiles();
-        startActivity(new Intent(this, SelectionActivity.class));
+        Intent i = new Intent(this, QuizActivity.class);
+        i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(i);
     }
 }

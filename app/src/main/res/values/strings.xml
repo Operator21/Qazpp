@@ -11,4 +11,6 @@
     <string name="give_up">Give up</string>
     <string name="quiz_selection">Quiz selection</string>
     <string name="reset_files">Reset files</string>
+    <string name="quiz_creation">Quiz creation</string>
+    <string name="quiz_name">Quiz name</string>
 </resources>

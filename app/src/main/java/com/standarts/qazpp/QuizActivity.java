@@ -70,6 +70,7 @@ public class QuizActivity extends AppCompatActivity {
         } else {
             //Toast.makeText(this, "No more questions. Carry on", Toast.LENGTH_LONG).show();
             Intent i = new Intent(this, FinalScoreActivity.class);
+            i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
             i.putExtra("score", score);
             i.putExtra("maxscore", currentQuiz.Size());
             i.putExtra("quiz", json);
@@ -80,6 +81,7 @@ public class QuizActivity extends AppCompatActivity {
 
     public void menuClick(View view) {
         Intent i = new Intent(this, MenuActivity.class);
+        i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(i);
     }
 }
