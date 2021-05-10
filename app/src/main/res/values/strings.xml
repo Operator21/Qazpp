@@ -10,7 +10,7 @@
     <string name="main_menu">Main Menu</string>
     <string name="give_up">Give up</string>
     <string name="quiz_selection">Quiz selection</string>
-    <string name="reset_files">Reset files</string>
+    <string name="reset_files">Restore files</string>
     <string name="quiz_creation">Quiz creation</string>
     <string name="quiz_name">Quiz name</string>
     <string name="edit">Edit quiz</string>

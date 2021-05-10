@@ -1,7 +1,10 @@
 package com.standarts.qazpp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,7 +32,7 @@ public class CreateQuizActivity extends AppCompatActivity {
         if(!i.hasExtra("quiz")) {
             ((Button)findViewById(R.id.deleteQuizButton)).setVisibility(View.INVISIBLE);
         } else {
-            ((Button)findViewById(R.id.createQuizButton)).setText("Edit Quiz");
+            ((Button)findViewById(R.id.createQuizButton)).setText("Save changes");
             Quiz quiz = new Gson().fromJson(i.getStringExtra("quiz"), Quiz.class);
             quizName.setText(quiz.Name());
             quizQuestions.setText(new QuestionInputParser().QuizQuestionsToString(quiz));
@@ -60,16 +63,37 @@ public class CreateQuizActivity extends AppCompatActivity {
         if(FileHelper.WriteToFile(filename, json)){
             Toast.makeText(this, "Quiz written to file " + filename + ".json", Toast.LENGTH_SHORT).show();
         }
-        finish();
+        ReturnToMenu();
     }
 
     public void deleteClick(View view) {
-        if(FileHelper.RemoveFile(filename)) {
-            Toast.makeText(this, filename + " has be removed", Toast.LENGTH_SHORT).show();
-        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Deleting file");
+        builder.setMessage("By continuing you will delete this quiz. This operation cannot be taken back!");
+
+        Context context = this;
+        builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(FileHelper.RemoveFile(filename)) {
+                    Toast.makeText(context, filename + " has be removed", Toast.LENGTH_SHORT).show();
+                }
+                ReturnToMenu();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.create().show();
+    }
+
+    private void ReturnToMenu(){
         Intent i = new Intent(this, MenuActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        //i.putExtra("edit", true);
         startActivity(i);
     }
 }

@@ -1,8 +1,10 @@
 package com.standarts.qazpp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -65,10 +67,28 @@ public class SelectionActivity extends AppCompatActivity {
     }
 
     public void resetClick(View view) {
-        DefaultFilesCreator.CreateDefaultFiles();
-        Toast.makeText(this, "Files have been restored to default.", Toast.LENGTH_SHORT).show();
-        Intent i = new Intent(this, MenuActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(i);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Restoring defaults");
+        builder.setMessage("By continuing you will reset all application files, your changes will be deleted and default quizzes will be created again. This operation cannot be taken back!");
+
+        Context context = this;
+        builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                DefaultFilesCreator.CreateDefaultFiles();
+                Toast.makeText(context, "Files have been restored to default.", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(context, MenuActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.create().show();
     }
 }

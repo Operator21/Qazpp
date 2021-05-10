@@ -38,16 +38,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.8" />
 
     <Button
         android:id="@+id/resetFilesButton"
         style="@style/menubutton"
-        android:text="@string/reset_files"
+        android:layout_marginBottom="10dp"
         android:onClick="resetClick"
+        android:text="@string/reset_files"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="First time using this app? Try some predefined quizzes.\nJust click this button to generate them."
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/resetFilesButton"
+        app:layout_constraintEnd_toEndOf="@+id/resetFilesButton"
+        app:layout_constraintStart_toStartOf="@+id/resetFilesButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

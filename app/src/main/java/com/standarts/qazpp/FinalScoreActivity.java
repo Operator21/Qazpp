@@ -19,7 +19,7 @@ public class FinalScoreActivity extends AppCompatActivity {
 
         Intent data = getIntent();
         if(!data.hasExtra("score") || !data.hasExtra("maxscore") || !data.hasExtra("quiz")){
-            Toast.makeText(this, "Unexpected error occured", Toast.LENGTH_LONG);
+            Toast.makeText(this, "Unexpected error occurred", Toast.LENGTH_LONG);
             return;
         }
         json = data.getStringExtra("quiz");
@@ -36,7 +36,7 @@ public class FinalScoreActivity extends AppCompatActivity {
 
     public void menuClick(View view) {
         Intent i = new Intent(this, MenuActivity.class);
-        i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
     }
 }

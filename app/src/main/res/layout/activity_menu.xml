@@ -6,27 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".MenuActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/app_name"
-        android:textSize="50sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/playButton"
-        android:layout_marginTop="40dp"
+        style="@style/menubutton"
+        android:backgroundTint="@color/blue"
         android:onClick="PlayClick"
         android:text="@string/play"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        style="@style/menubutton"
-        android:backgroundTint="@color/blue"/>
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/createButton"
@@ -49,6 +38,25 @@
         app:layout_constraintStart_toStartOf="@+id/createButton"
         app:layout_constraintTop_toBottomOf="@+id/createButton"
         android:backgroundTint="@color/yellow"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="341dp"
+        android:layout_height="234dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/qazpp_logo" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="Stanislav Zdych © 2021"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
