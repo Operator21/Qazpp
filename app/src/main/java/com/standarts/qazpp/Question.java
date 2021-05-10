@@ -30,8 +30,12 @@ public class Question {
         return correctAnswer;
     }
 
-    public ArrayList Answers(){
-        Collections.shuffle(answers);
+    public ArrayList<String> Answers(){
+        ArrayList<String> shuffle = (ArrayList<String>) answers.clone();
+        Collections.shuffle(shuffle);
+        return shuffle;
+    }
+    public ArrayList<String> AnswersUnshuffled(){
         return answers;
     }
 

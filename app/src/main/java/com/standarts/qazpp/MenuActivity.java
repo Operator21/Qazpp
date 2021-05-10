@@ -41,8 +41,11 @@ public class MenuActivity extends AppCompatActivity {
         Log.d("FILES", file);
     }
 
-    public void exitClick(View view) {
+    public void editClick(View view) {
         //soundHelper.PlayClick();
-        finish();
+        Intent i = new Intent(this, SelectionActivity.class);
+        i.putExtra("edit", true);
+        startActivity(i);
+        //finish();
     }
 }

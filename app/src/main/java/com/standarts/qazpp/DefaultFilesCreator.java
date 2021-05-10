@@ -13,7 +13,7 @@ public class DefaultFilesCreator {
         masseffect.Add(new Question("What is Samara's daughter Morinth?", new String[]{"Ardat Yakshi", "Spectre", "Justicar"}));
         masseffect.Add(new Question("What was the name of the Prothean V.I on Ilos?", new String[]{"Vigil", "Glyph","EDI"}));
         masseffect.Add(new Question("Male Shepard and Garrus have the same voice actor.", new String[]{"Yes", "No"}));
-        FileHelper.WriteToFile("me", masseffect.ToJson());
+        FileHelper.WriteToFile(FileHelper.CreateSafeFilename(masseffect.Name()), masseffect.ToJson());
 
         //Life is strange
         Quiz lis = new Quiz("Life is Strange", "Michaela Meitnerová");
@@ -37,7 +37,7 @@ public class DefaultFilesCreator {
         lis.Add(new Question("Jak se jmenuje kamarád Max?", new String[]{"Warren", "Zachary", "Nathan", "Frank"}));
         lis.Add(new Question("Jak se jmenuje profesor, který vyučuje Fotografování", new String[]{"Jefferson", "Hankson", "Bradley", "Jeffrey"}));
         lis.Add(new Question("Jak se jmenuje hra, ve které hrají Rachel a Chloe?", new String[]{"The Tempest", "The Forest", "The Clouds", "The Nemesis"}));
-        FileHelper.WriteToFile("lis", lis.ToJson());
+        FileHelper.WriteToFile(FileHelper.CreateSafeFilename(lis.Name()), lis.ToJson());
 
         //StarGate
         Quiz sg = new Quiz("StarGate", "Filip Fojtík");
@@ -56,7 +56,7 @@ public class DefaultFilesCreator {
         sg.Add(new Question("Hvězdná brána se začala vysílat od roku", new String[]{"1997", "1999", "2000", "1994"}));
         sg.Add(new Question("Hned v pilotním díle zemřel", new String[]{"Major Charles Kawalsky", "Daniel Jackson", "Bra'tac", "Jonas"}));
         sg.Add(new Question("Jak se nazývá -štít- na hvězdné bráně lidí", new String[]{"Iris", "Štít", "Shapa ai", "SG Defend System"}));
-        FileHelper.WriteToFile("sg", sg.ToJson());
+        FileHelper.WriteToFile(FileHelper.CreateSafeFilename(sg.Name()), sg.ToJson());
     }
 
 

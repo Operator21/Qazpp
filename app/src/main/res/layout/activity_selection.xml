@@ -41,7 +41,7 @@
         app:layout_constraintGuide_percent="0.9" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/resetFilesButton"
         style="@style/menubutton"
         android:text="@string/reset_files"
         android:onClick="resetClick"

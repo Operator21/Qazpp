@@ -79,15 +79,26 @@
         app:layout_constraintTop_toBottomOf="@+id/nameTextEdit" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/createQuizButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/create_quiz"
         android:onClick="createClick"
+        android:text="@string/create_quiz"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintTop_toTopOf="@+id/guideline12"
+        android:backgroundTint="@color/green"/>
+
+    <Button
+        android:id="@+id/deleteQuizButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete"
+        android:onClick="deleteClick"
+        app:layout_constraintBottom_toBottomOf="@+id/createQuizButton"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toTopOf="@+id/guideline12" />
+        app:layout_constraintTop_toTopOf="@+id/createQuizButton"
+        android:backgroundTint="@color/red"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

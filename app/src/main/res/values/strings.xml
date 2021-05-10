@@ -13,4 +13,6 @@
     <string name="reset_files">Reset files</string>
     <string name="quiz_creation">Quiz creation</string>
     <string name="quiz_name">Quiz name</string>
+    <string name="edit">Edit quiz</string>
+    <string name="delete">Delete</string>
 </resources>

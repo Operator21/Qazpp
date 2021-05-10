@@ -77,4 +77,17 @@ public class FileHelper {
         }
         return file.getName().split("\\.")[0];
     }
+
+    public static String CreateSafeFilename(String raw) {
+        return raw.trim().toLowerCase().replace(" ", "_");
+    }
+
+    public static boolean RemoveFile(String filename) {
+        File file = new File(FilePath(filename));
+        Log.d("FILES", "removing " + file.getName());
+        if(file.exists()){
+            return file.delete();
+        }
+        return false;
+    }
 }

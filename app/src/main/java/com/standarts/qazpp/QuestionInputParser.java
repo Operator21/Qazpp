@@ -35,4 +35,17 @@ public class QuestionInputParser {
         }
         return questions;
     }
+
+    public String QuizQuestionsToString(Quiz quiz) {
+        String output = "";
+        for(Question q : quiz.Questions()){
+            String wrongAnswers = "";
+            for(String wrong : q.AnswersUnshuffled()){
+                wrongAnswers += wrong + ",";
+            }
+            wrongAnswers = wrongAnswers.substring(0, wrongAnswers.length() - 1);
+            output += q.Text() + ":" + wrongAnswers + "\n";
+        }
+        return output;
+    }
 }

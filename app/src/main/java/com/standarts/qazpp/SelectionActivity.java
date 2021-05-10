@@ -11,8 +11,10 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -38,10 +40,22 @@ public class SelectionActivity extends AppCompatActivity {
         }
         ListView listView = findViewById(R.id.fileList);
         Context context = this;
+
+        Intent in = getIntent();
+        if(in.hasExtra("edit")){
+            ((Button)findViewById(R.id.resetFilesButton)).setVisibility(View.INVISIBLE);
+        }
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(context, QuizActivity.class);
+                Intent i;
+                if(in.hasExtra("edit")){
+                    i = new Intent(context, CreateQuizActivity.class);
+                } else {
+                    i = new Intent(context, QuizActivity.class);
+                }
+
                 i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
                 i.putExtra("quiz", new Gson().toJson(parent.getAdapter().getItem(position)));
                 startActivity(i);
@@ -52,8 +66,9 @@ public class SelectionActivity extends AppCompatActivity {
 
     public void resetClick(View view) {
         DefaultFilesCreator.CreateDefaultFiles();
-        Intent i = new Intent(this, QuizActivity.class);
-        i.setFlags(i.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
+        Toast.makeText(this, "Files have been restored to default.", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(this, MenuActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
     }
 }
