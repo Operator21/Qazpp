@@ -20,6 +20,6 @@
 ### Vyhodnocování
 - Splněný kvíz je na konci vyhodnocen
 - Každá otázka = 1 správná odpověd
-- Počet možných otázek a odpovědí na ně teoreticky nemomezený
+- Počet možných otázek a odpovědí není omezen
 
 ![Finální skóre](score.jpg)
